@@ -70,20 +70,18 @@ describe('PrizeDistributor::claim()', () => {
 
         await expect(
             prizeDistributor.claim(
-                // treeAccounts[0],
                 signers[0].address,
                 mockERC20.address,
                 ethers.utils.parseUnits('1'),
                 proof
             )
-        ).to.be.revertedWith('Incorrect caller');
+        ).to.be.revertedWith('Incorrect account');
     });
 
     it('Should fail to claim if the prize is already claimed', async () => {
         const proof = tree.getHexProof(leafNodes[0]);
 
         await prizeDistributor.connect(signers[0]).claim(
-            // treeAccounts[0],
             signers[0].address,
             mockERC20.address,
             ethers.utils.parseUnits('1'),
@@ -94,7 +92,6 @@ describe('PrizeDistributor::claim()', () => {
 
         await expect(
             prizeDistributor.connect(signers[0]).claim(
-                // treeAccounts[0],
                 signers[0].address,
                 mockERC20.address,
                 ethers.utils.parseUnits('1'),
