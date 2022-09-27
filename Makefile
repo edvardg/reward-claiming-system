@@ -21,11 +21,11 @@ test :; forge test
 
 snapshot :; forge snapshot
 
-slither :; forge flatten src/Counter.sol > flattened.sol && slither flattened.sol;rm -rf flattened.sol
+slither :; forge flatten src/PrizeDistributor.sol > flattened.sol && slither flattened.sol; rm -rf flattened.sol
 
-format :; prettier --write src/*.sol && prettier --write test/*.sol && prettier --write script/*.sol
+format :; prettier --write src/*/*.sol && prettier --write test/*.sol && prettier --write script/*.sol
 
 # solhint should be installed globally
-lint :; solhint src/*.sol && solhint test/*.sol && solhint script/*.sol
+lint :; solhint src/*/*.sol && solhint test/*.sol && solhint script/*.sol
 
-deploy :; @forge script script/Counter.s.sol:CounterScript --rpc-url ${RPC_URL} --private-key ${PRIVATE_KEY} --broadcast --verify --etherscan-api-key ${ETHERSCAN_API_KEY}  -vvvv
+deploy :; @forge script script/PrizeDistributor.s.sol:Deploy --rpc-url ${RPC_URL} --private-key ${PRIVATE_KEY} --broadcast --verify --etherscan-api-key ${ETHERSCAN_API_KEY}  -vvvv
